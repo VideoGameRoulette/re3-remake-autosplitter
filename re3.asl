@@ -1,66 +1,32 @@
 //Resident Evil 3 Remake Autosplitter
-//By CursedToast 04/03/2020
+//By CursedToast & VideoGameRoulette 04/03/2020
 //Special thanks to Squirrelies for collaborating in finding memory values.
-//Last updated 12/17/2021
+//Last updated 05/05/2023
 
-state("re3", "12/17 Update")
+state("re3", "World Public RT 2023")
 {
-	int map : "re3.exe", 0x54DF0F8, 0x88;
-	int bossHP : "re3.exe", 0x8D868B0, 0x30, 0x20, 0x300, 0x58;
-	int weapon1 : "re3.exe", 0x8D85BA0, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	long active :  0x8DB3BA0, 0x60, 0x18;
-	long cutscene :  0x8DB3BA0, 0x60, 0x20;
-	long paused :  0x8DB3BA0, 0x60, 0x30;
+    int gameStartType : "re3.exe", 0x09A70808, 0x54;
+	int survivorType : "re3.exe", 0x09A772E8, 0x50, 0x10, 0x20, 0x54;
+	int map : "re2.exe", 0x09A76458;
+	int loc : "re2.exe", 0x09A76450;
+	int weaponSlot1 : "re2.exe", 0x09A68190, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
+	int bossHP : "re2.exe", 0x09A750C8, 0x78, 0x10, 0x20, 0x300, 0x54;
+	long active : 0x09A650A8, 0x60, 0x18;
+	long cutscene : 0x09A650A8, 0x60, 0x20;
+	long paused : 0x09A650A8, 0x60, 0x30;
 }
 
-state("re3", "1.3")
+state("re3", "World DX11 2023")
 {
-	int map : "re3.exe", 0x054DC0F8, 0x88;
-	int bossHP : "re3.exe", 0x08D838B0, 0x30, 0x20, 0x300, 0x58;
-	int weapon1 : "re3.exe", 0x08D82BA0, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	long active :  0x08DB0BA0, 0x60, 0x18;
-	long cutscene :  0x08DB0BA0, 0x60, 0x20;
-	long paused :  0x08DB0BA0, 0x60, 0x30;
-}
-
-state("re3", "1.2")
-{
-	int map : "re3.exe", 0x054E30F8, 0x88;
-	int bossHP : "re3.exe", 0x08D8A8A0, 0x30, 0x20, 0x300, 0x58;
-	int weapon1 : "re3.exe", 0x08D89B90, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	long active :  0x08DB7B90, 0x60, 0x18;
-	long cutscene :  0x08DB7B90, 0x60, 0x20;
-	long paused :  0x08DB7B90, 0x60, 0x30;
-}
-
-state("re3", "1.1")
-{
-	int map : "re3.exe", 0x054190F8, 0x88;
-	int bossHP : "re3.exe", 0x08CB8618, 0x30, 0x20, 0x300, 0x58;
-	int weapon1 : "re3.exe", 0x08CBA618, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	long active :  0x08CE8430, 0x60, 0x18;
-	long cutscene :  0x08CE8430, 0x60, 0x20;
-	long paused :  0x08CE8430, 0x60, 0x30;
-}
-
-state("re3", "1.0")
-{
-	int map : "re3.exe", 0x054DB0F8, 0x88;
-	int bossHP : "re3.exe", 0x08D7A5A8, 0x30, 0x20, 0x300, 0x58;
-	int weapon1 : "re3.exe", 0x08D7C5E8, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	long active :  0x08DAA3F0, 0x60, 0x18;
-	long cutscene :  0x08DAA3F0, 0x60, 0x20;
-	long paused :  0x08DAA3F0, 0x60, 0x30;
-}
-
-state("re3", "Cero Z 1.0")
-{
-	int map : "re3.exe", 0x054190F8, 0x88;
-	int bossHP : "re3.exe", 0x08CB8618, 0x30, 0x20, 0x300, 0x58;
-	int weapon1 : "re3.exe", 0x08CBA618, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	long active :  0x08CE8430, 0x60, 0x18;
-	long cutscene :  0x08CE8430, 0x60, 0x20;
-	long paused :  0x08CE8430, 0x60, 0x30;
+    int gameStartType : "re3.exe", 0x08C5EBF8, 0x54;
+	int survivorType : "re3.exe", 0x08C73F98, 0x50, 0x10, 0x20, 0x54;
+	int map : "re2.exe", 0x08C74308;
+	int loc : "re2.exe", 0x08C74300;
+	int weaponSlot1 : "re2.exe", 0x08C6F648, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
+	int bossHP : "re2.exe", 0x08C72D60, 0x78, 0x10, 0x20, 0x300, 0x54;
+	long active : 0x08C63308, 0x60, 0x18;
+	long cutscene : 0x08C63308, 0x60, 0x20;
+	long paused : 0x08C63308, 0x60, 0x30;
 }
 
 startup
@@ -86,7 +52,7 @@ startup
 	settings.Add("batteryPack", true, "Battery Pack (Sewers Key)", "part2");
 	settings.Add("sewersExit", true, "Escaped Sewers", "part2");
 	settings.Add("flameNemmy", true, "Nemesis 1 (Flamethrower)", "part2");
-		settings.Add("kendos", true, "Reached Kendo's", "part2");
+	settings.Add("kendos", true, "Reached Kendo's", "part2");
 	settings.Add("kendoKey", true, "Kendo's Gate Key", "part2");
 	settings.Add("escapedRocketNemmy", true, "Escaped Rocket Nemesis", "part2");
 	
@@ -126,6 +92,7 @@ startup
 
 init
 {
+	print("=== Module Memory Size === " + modules.First().ModuleMemorySize.ToString());
 	vars.inventoryPtr = IntPtr.Zero;
     
     vars.fas = 0;
@@ -133,36 +100,12 @@ init
 	switch (modules.First().ModuleMemorySize)
 	{
 		default:
-			version = "Unknown Version - Contact CT";
-			vars.inventoryPtr = 0x08D7C5E8;
+			version = "World DX11 2023";
+			vars.inventoryPtr = 0x08C6F648;
 			break;
-		case (613351424):
-			version = "1.0";
-			vars.inventoryPtr = 0x08D7C5E8;
-			break;
-		case (156102656):
-			version = "12/17 Update";
-			vars.inventoryPtr = 0x8D85BA0;
-			break;
-		case (609722368):
-			version = "1.1";
-			vars.inventoryPtr = 0x08CBA618;
-			break;
-		case (603697152):
-			version = "1.2";
-			vars.inventoryPtr = 0x08D89B90;
-			break;
-		case (645672960):
-			version = "1.2";
-			vars.inventoryPtr = 0x08D89B90;
-			break;
-		case (156090368):
-			version = "1.3";
-			vars.inventoryPtr = 0x08D82BA0;
-			break;
-		case (640299008):
-			version = "Cero Z 1.0";
-			vars.inventoryPtr = 0x08CBA618;
+		case (173076480):
+			version = "World Public RT 2023";
+			vars.inventoryPtr = 0x08C6F648;
 			break;
 	}
 
@@ -178,10 +121,17 @@ init
     }
 }
 
-
 start
 {	
-	if (current.map == 1)
+	if (current.loc == 0 && current.gameStartType == 1)
+	{
+		return true;
+	}
+}
+
+reset
+{	
+	if (current.loc != 0 && current.map != 0 && current.gameStartType == 0)
 	{
 		return true;
 	}
@@ -189,7 +139,6 @@ start
 
 update
 {
-	//print(modules.First().ModuleMemorySize.ToString());
 	// Track inventory IDs
     current.inventory = new int[20];
     for (int i = 0; i < current.inventory.Length; ++i)
