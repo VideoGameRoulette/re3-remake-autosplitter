@@ -1,16 +1,16 @@
 //Resident Evil 3 Remake Autosplitter
 //By CursedToast & VideoGameRoulette 04/03/2020
 //Special thanks to Squirrelies for collaborating in finding memory values.
-//Last updated 05/05/2023
+//Last updated 05/07/2023
 
 state("re3", "World Public RT 2023")
 {
     int gameStartType : "re3.exe", 0x09A70808, 0x54;
 	int survivorType : "re3.exe", 0x09A772E8, 0x50, 0x10, 0x20, 0x54;
-	int map : "re2.exe", 0x09A76458;
-	int loc : "re2.exe", 0x09A76450;
-	int weaponSlot1 : "re2.exe", 0x09A68190, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	int bossHP : "re2.exe", 0x09A750C8, 0x78, 0x10, 0x20, 0x300, 0x54;
+	int map : "re3.exe", 0x09A76458;
+	int loc : "re3.exe", 0x09A76450;
+	int weaponSlot1 : "re3.exe", 0x09A68190, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
+	int bossHP : "re3.exe", 0x09A750C8, 0x78, 0x10, 0x20, 0x300, 0x54;
 	long active : 0x09A650A8, 0x60, 0x18;
 	long cutscene : 0x09A650A8, 0x60, 0x20;
 	long paused : 0x09A650A8, 0x60, 0x30;
@@ -20,10 +20,10 @@ state("re3", "World DX11 2023")
 {
     int gameStartType : "re3.exe", 0x08C5EBF8, 0x54;
 	int survivorType : "re3.exe", 0x08C73F98, 0x50, 0x10, 0x20, 0x54;
-	int map : "re2.exe", 0x08C74308;
-	int loc : "re2.exe", 0x08C74300;
-	int weaponSlot1 : "re2.exe", 0x08C6F648, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
-	int bossHP : "re2.exe", 0x08C72D60, 0x78, 0x10, 0x20, 0x300, 0x54;
+	int map : "re3.exe", 0x08C74308;
+	int loc : "re3.exe", 0x08C74300;
+	int weaponSlot1 : "re3.exe", 0x08C6F648, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
+	int bossHP : "re3.exe", 0x08C72D60, 0x78, 0x10, 0x20, 0x300, 0x54;
 	long active : 0x08C63308, 0x60, 0x18;
 	long cutscene : 0x08C63308, 0x60, 0x20;
 	long paused : 0x08C63308, 0x60, 0x30;
@@ -31,6 +31,16 @@ state("re3", "World DX11 2023")
 
 startup
 {
+	Action<string, bool, string, string> initSettingGroup = (key, enabled, title, description) => {
+		settings.Add(key, enabled, title);
+		settings.SetToolTip(key, description);
+	};
+
+	Action<string, bool, string, string, string> initSettingGroupOption = (key, enabled, title, description, group) => {
+		settings.Add(key, true, title, group);
+		settings.SetToolTip(key, description);
+	};
+	
 	settings.Add("part1", true, "Part 1");
 	settings.Add("escapedApartment", true, "Escaped Apartment", "part1");
 	settings.Add("byeBrad", true, "Escaped Bar Jack", "part1");
@@ -125,6 +135,7 @@ start
 {	
 	if (current.loc == 0 && current.gameStartType == 1)
 	{
+		print("New Game Timer Started");
 		return true;
 	}
 }
@@ -133,6 +144,7 @@ reset
 {	
 	if (current.loc != 0 && current.map != 0 && current.gameStartType == 0)
 	{
+		print("Exited To Title Resetting Timer");
 		return true;
 	}
 }
@@ -209,6 +221,11 @@ update
 
 split
 {
+	Func<string, bool> LogAndSplit = (splitId) => {
+  		print("Splitting: " + splitId);
+  		return settings[splitId];
+	};
+	
 	// Item splits
     int[] currentInventory = (current.inventory as int[]);
     int[] oldInventory = (old.inventory as int[]); // throws error first update, will be fine afterwards.
@@ -426,10 +443,11 @@ split
 	// Map splits
 	if (current.map != old.map)
 	{
+		print("Current Map Changed: " + current.map);
 		if (current.map == 12 && vars.escapedApartment == 0)
 		{
 			vars.escapedApartment = 1;
-			return settings["escapedApartment"];
+			return LogAndSplit("escapedApartment");
 		}
 		
 		if (current.map == 18 && vars.byeBrad == 0)
