@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Run version="1.7.0">
+  <GameIcon />
+  <GameName>Resident Evil 3 (2020)</GameName>
+  <CategoryName>Any% (PC)</CategoryName>
+  <LayoutPath>
+  </LayoutPath>
+  <Metadata>
+    <Run id="" />
+    <Platform usesEmulator="False">PC</Platform>
+    <Region>
+    </Region>
+    <Variables>
+      <Variable name="Intro">Full Game</Variable>
+      <Variable name="FPS">120</Variable>
+      <Variable name="Difficulty">Assisted</Variable>
+    </Variables>
+  </Metadata>
+  <Offset>00:00:00</Offset>
+  <AttemptCount>5</AttemptCount>
+  <AttemptHistory>
+    <Attempt id="1" started="05/07/2023 19:47:31" isStartedSynced="True" ended="05/07/2023 20:00:33" isEndedSynced="True" />
+    <Attempt id="2" started="05/07/2023 20:04:04" isStartedSynced="True" ended="05/07/2023 20:15:18" isEndedSynced="True" />
+    <Attempt id="3" started="05/07/2023 20:16:47" isStartedSynced="True" ended="05/07/2023 20:17:51" isEndedSynced="True" />
+    <Attempt id="4" started="05/07/2023 20:17:51" isStartedSynced="True" ended="05/07/2023 20:19:52" isEndedSynced="True" />
+    <Attempt id="5" started="05/07/2023 20:22:13" isStartedSynced="True" ended="05/07/2023 20:28:23" isEndedSynced="True" />
+  </AttemptHistory>
+  <Segments>
+    <Segment>
+      <Name>1</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime>
+        <RealTime>00:04:58.6124040</RealTime>
+        <GameTime>00:01:19.9080000</GameTime>
+      </BestSegmentTime>
+      <SegmentHistory>
+        <Time id="5">
+          <RealTime>00:04:58.6124040</RealTime>
+          <GameTime>00:01:19.9080000</GameTime>
+        </Time>
+      </SegmentHistory>
+    </Segment>
+    <Segment>
+      <Name>2</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime>
+        <RealTime>00:01:00.7528775</RealTime>
+        <GameTime>00:00:40.8010000</GameTime>
+      </BestSegmentTime>
+      <SegmentHistory>
+        <Time id="5">
+          <RealTime>00:01:00.7528775</RealTime>
+          <GameTime>00:00:40.8010000</GameTime>
+        </Time>
+      </SegmentHistory>
+    </Segment>
+    <Segment>
+      <Name>3</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>4</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>5</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>6</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>7</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>8</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>9</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>10</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>11</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>12</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>13</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+  </Segments>
+  <AutoSplitterSettings>
+    <Version>1.5</Version>
+    <ScriptPath>C:\Users\User\Desktop\Organize Me\Livesplit\Components\re3.asl</ScriptPath>
+    <Start>True</Start>
+    <Reset>True</Reset>
+    <Split>True</Split>
+    <CustomSettings>
+      <Setting id="part1" type="bool">True</Setting>
+      <Setting id="escapedApartment" type="bool">True</Setting>
+      <Setting id="byeBrad" type="bool">True</Setting>
+      <Setting id="dario" type="bool">True</Setting>
+      <Setting id="garageRoof" type="bool">True</Setting>
+      <Setting id="reachedSubway" type="bool">True</Setting>
+      <Setting id="drinkOfWater" type="bool">True</Setting>
+      <Setting id="kitebros" type="bool">True</Setting>
+      <Setting id="fireHose" type="bool">True</Setting>
+      <Setting id="murphy" type="bool">True</Setting>
+      <Setting id="boltCutters" type="bool">False</Setting>
+      <Setting id="part2" type="bool">True</Setting>
+      <Setting id="powerSubstation" type="bool">True</Setting>
+      <Setting id="lockPick" type="bool">True</Setting>
+      <Setting id="finishedPowerSubstation" type="bool">True</Setting>
+      <Setting id="kitebrosControl" type="bool">True</Setting>
+      <Setting id="reachedSewers" type="bool">True</Setting>
+      <Setting id="batteryPack" type="bool">True</Setting>
+      <Setting id="sewersExit" type="bool">True</Setting>
+      <Setting id="flameNemmy" type="bool">True</Setting>
+      <Setting id="kendos" type="bool">True</Setting>
+      <Setting id="kendoKey" type="bool">True</Setting>
+      <Setting id="escapedRocketNemmy" type="bool">True</Setting>
+      <Setting id="part3" type="bool">True</Setting>
+      <Setting id="carlosRPDStart" type="bool">True</Setting>
+      <Setting id="battery" type="bool">True</Setting>
+      <Setting id="emptyDetonator" type="bool">True</Setting>
+      <Setting id="stars" type="bool">True</Setting>
+      <Setting id="part4" type="bool">True</Setting>
+      <Setting id="subwayTunnelExit" type="bool">True</Setting>
+      <Setting id="clockNemmy" type="bool">True</Setting>
+      <Setting id="tapePlayer" type="bool">True</Setting>
+      <Setting id="lockerKey" type="bool">True</Setting>
+      <Setting id="hospitalIdCard" type="bool">True</Setting>
+      <Setting id="cassette" type="bool">True</Setting>
+      <Setting id="vaccine" type="bool">True</Setting>
+      <Setting id="defendedJill" type="bool">True</Setting>
+      <Setting id="part5" type="bool">True</Setting>
+      <Setting id="hospitalLift" type="bool">True</Setting>
+      <Setting id="fuse1" type="bool">True</Setting>
+      <Setting id="fuse2" type="bool">True</Setting>
+      <Setting id="fuse3" type="bool">True</Setting>
+      <Setting id="part6" type="bool">True</Setting>
+      <Setting id="nest2" type="bool">True</Setting>
+      <Setting id="overrideKey" type="bool">True</Setting>
+      <Setting id="cultureSample" type="bool">True</Setting>
+      <Setting id="liquidTube" type="bool">True</Setting>
+      <Setting id="vaccineBase" type="bool">True</Setting>
+      <Setting id="vaccineCompleted" type="bool">False</Setting>
+      <Setting id="disposalNemmy" type="bool">True</Setting>
+      <Setting id="finalNemmy" type="bool">True</Setting>
+      <Setting id="end" type="bool">True</Setting>
+    </CustomSettings>
+  </AutoSplitterSettings>
+</Run>
