@@ -31,8 +31,29 @@ state("re3", "World DX11 2023")
 
 startup
 {
+	Action<string> RemoveFirstLine = (filePath) => {
+		string[] lines = File.ReadAllLines(filePath);
+		File.WriteAllLines(filePath, lines.Skip(1));
+	};
+
+	Action<string> SaveLogs = (filePath) => {
+		// Get the current line count of the file
+		int lineCount = File.ReadLines(filePath).Count();
+
+		// Check if line count is greater than 10
+		if (lineCount > 10)
+		    RemoveFirstLine(filePath);
+
+		// Append the new line to the file
+		using (StreamWriter sw = File.AppendText(filePath))
+			sw.WriteLine(text);
+	};
+
 	Action<string> DebugOutput = (text) => {
+		string filePath = "re3.log";
 		print("[Debug Livesplit]: " + text);
+		if (settings["logToFile"])
+			SaveLogs(filePath);
 	};
 	vars.Log = DebugOutput;
 
@@ -46,6 +67,8 @@ startup
 		settings.SetToolTip(key, description);
 	};
 	
+	initSettingGroup("logToFile", false, "Debug Logging", "Toggles the DebugOutput to output 10 latest logs to log file");
+
 	initSettingGroup("part1", true, "Part 1", "");
 	initSettingGroupOption("escapedApartment", true, "Escaped Apartment", "part1", "Enter Location 12");
 	initSettingGroupOption("byeBrad", true, "Escaped Bar Jack", "part1", "");
@@ -136,7 +159,19 @@ init
 
 start
 {	
-	if (current.loc == 0 && current.gameStartType == 1)
+	// isNewGameStart conditions
+    bool locationsReset = current.map == 0 && current.loc == 0;
+    bool isPlayerInit = old.playerMaxHP != 1200 && current.playerCurrentHP == 1200 && current.playerMaxHP == 1200;
+    bool isNewGameInit = old.gameStartType == 1 && current.gameStartType == 1;
+
+    // New Game Run Started
+    bool isNewGameStart = locationsReset && isPlayerInit && isNewGameInit;
+
+    // Segmented Runs Started
+    // bool isSegmentedStart = settings["segments"] && current.gameStartType == 2;
+
+    // Start Conditions
+    if (isNewGameStart)
 	{
 		vars.Log("New Game Timer Started");
 		return true;
