@@ -1,12 +1,14 @@
 //Resident Evil 3 Remake Autosplitter
 //By CursedToast & VideoGameRoulette 04/03/2020
 //Special thanks to Squirrelies for collaborating in finding memory values.
-//Last updated 05/07/2023
+//Last updated 05/08/2023
 
 state("re3", "World Public RT 2023")
 {
     int gameStartType : "re3.exe", 0x09A70808, 0x54;
 	int survivorType : "re3.exe", 0x09A772E8, 0x50, 0x10, 0x20, 0x54;
+	int playerCurrentHP : "re3.exe", 0x09A772E8, 0x50, 0x10, 0x20, 0x2C0, 0x58;
+    int playerMaxHP : "re3.exe", 0x09A772E8, 0x50, 0x10, 0x20, 0x2C0, 0x54;
 	int map : "re3.exe", 0x09A76458;
 	int loc : "re3.exe", 0x09A76450;
 	int weaponSlot1 : "re3.exe", 0x09A68190, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
@@ -20,6 +22,8 @@ state("re3", "World DX11 2023")
 {
     int gameStartType : "re3.exe", 0x08C5EBF8, 0x54;
 	int survivorType : "re3.exe", 0x08C73F98, 0x50, 0x10, 0x20, 0x54;
+	int playerCurrentHP : "re3.exe", 0x08C73F98, 0x50, 0x10, 0x20, 0x2C0, 0x58;
+    int playerMaxHP : "re3.exe", 0x08C73F98, 0x50, 0x10, 0x20, 0x2C0, 0x54;
 	int map : "re3.exe", 0x08C74308;
 	int loc : "re3.exe", 0x08C74300;
 	int weaponSlot1 : "re3.exe", 0x08C6F648, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
@@ -31,12 +35,16 @@ state("re3", "World DX11 2023")
 
 startup
 {
+	vars.logToFile = false;
+    vars.logPath = "re3.log";
+    vars.MAX_ITEMS = 20;
+
 	Action<string> RemoveFirstLine = (filePath) => {
 		string[] lines = File.ReadAllLines(filePath);
 		File.WriteAllLines(filePath, lines.Skip(1));
 	};
 
-	Action<string> SaveLogs = (filePath) => {
+	Action<string, string> SaveLogs = (filePath, text) => {
 		// Get the current line count of the file
 		int lineCount = File.ReadLines(filePath).Count();
 
@@ -52,8 +60,8 @@ startup
 	Action<string> DebugOutput = (text) => {
 		string filePath = "re3.log";
 		print("[Debug Livesplit]: " + text);
-		if (settings["logToFile"])
-			SaveLogs(filePath);
+		if (vars.logToFile)
+			SaveLogs(filePath, text);
 	};
 	vars.Log = DebugOutput;
 
@@ -189,6 +197,8 @@ reset
 
 update
 {
+	vars.logToFile = settings["logToFile"];
+
 	if (current.gameStartType != old.gameStartType) vars.Log("Game Start Type Changed: " + current.gameStartType);
 	// Track inventory IDs
     current.inventory = new int[20];
