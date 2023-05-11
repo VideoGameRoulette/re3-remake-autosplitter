@@ -13,6 +13,7 @@ state("re3", "World Public RT 2023")
 	int loc : "re3.exe", 0x09A76450;
 	int weaponSlot1 : "re3.exe", 0x09A68190, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
 	int bossHP : "re3.exe", 0x09A750C8, 0x78, 0x10, 0x20, 0x300, 0x54;
+	byte isCutscene : 0x09A650A8, 0x51;
 	long active : 0x09A650A8, 0x60, 0x18;
 	long cutscene : 0x09A650A8, 0x60, 0x20;
 	long paused : 0x09A650A8, 0x60, 0x30;
@@ -28,6 +29,7 @@ state("re3", "World DX11 2023")
 	int loc : "re3.exe", 0x08C74300;
 	int weaponSlot1 : "re3.exe", 0x08C6F648, 0x50, 0x98, 0x10, 0x20, 0x18, 0x10, 0x14;
 	int bossHP : "re3.exe", 0x08C72D60, 0x78, 0x10, 0x20, 0x300, 0x54;
+	byte isCutscene : 0x08C63308, 0x51;
 	long active : 0x08C63308, 0x60, 0x18;
 	long cutscene : 0x08C63308, 0x60, 0x20;
 	long paused : 0x08C63308, 0x60, 0x30;
@@ -76,6 +78,7 @@ startup
 	};
 	
 	initSettingGroup("logToFile", false, "Debug Logging", "Toggles the DebugOutput to output 10 latest logs to log file");
+	initSettingGroup("segments", false, "Segment Practice Start", "Enables or disables segmented start trigger for segmented practice.");
 
 	initSettingGroup("part1", true, "Part 1", "");
 	initSettingGroupOption("escapedApartment", true, "Escaped Apartment", "part1", "Enter Location 12");
@@ -176,10 +179,10 @@ start
     bool isNewGameStart = locationsReset && isPlayerInit && isNewGameInit;
 
     // Segmented Runs Started
-    // bool isSegmentedStart = settings["segments"] && current.gameStartType == 2;
+    bool isSegmentedStart = settings["segments"] && current.gameStartType == 2;
 
     // Start Conditions
-    if (isNewGameStart)
+    if (isNewGameStart || isSegmentedStart)
 	{
 		vars.Log("New Game Timer Started");
 		return true;
@@ -200,6 +203,13 @@ update
 	vars.logToFile = settings["logToFile"];
 
 	if (current.gameStartType != old.gameStartType) vars.Log("Game Start Type Changed: " + current.gameStartType);
+
+	if (current.map == 323)
+	{
+		vars.reachedEnd = 1;
+		print("reachedEnd");
+	}
+
 	// Track inventory IDs
     current.inventory = new int[20];
     for (int i = 0; i < current.inventory.Length; ++i)
@@ -260,11 +270,6 @@ update
 		vars.disposalNemmy = 0;
 		vars.finalNemmy = 0;
 		vars.end = 0;
-	}
-	
-	if (current.map == 323)
-	{
-		vars.reachedEnd = 1;
 	}
 }
 
@@ -489,7 +494,52 @@ split
         }
     }
 	
+	// Boss Splits
+	if (current.map == 242 && current.bossHP < 1 && vars.clockNemmy == 0)
+	{
+		vars.clockNemmy = 1;
+		return LogAndSplit("clockNemmy");
+	}
+	
+	if (current.map == 231 && current.bossHP < 1 && vars.flameNemmy == 0)
+	{
+		vars.flameNemmy = 1;
+		return LogAndSplit("flameNemmy");
+	}
+	
+	if (current.map == 316 && !(current.bossHP >= 1) && vars.disposalNemmy == 0)
+	{
+		vars.disposalNemmy = 1;
+		return LogAndSplit("disposalNemmy");
+	}
+	
+	if (current.map == 319 && current.bossHP < 5000  && vars.finalNemmy == 0)
+	{
+		vars.finalNemmy = 1;
+		return LogAndSplit("finalNemmy");
+	}
+
 	// Map splits
+
+	//End split
+	if (vars.reachedEnd == 1 && current.map == 0 && current.loc == 0 && current.isCutscene == 1)
+	{
+		vars.end = 1;
+		return LogAndSplit("end");
+	}
+	
+	if (current.map == 200 && current.cutscene > old.cutscene && vars.finishedPowerSubstation == 0)
+	{
+		vars.finishedPowerSubstation = 1;
+		return LogAndSplit("finishedPowerSubstation");
+	}
+		
+	if (current.map == 204 && current.cutscene > old.cutscene && vars.kitebrosControl == 0)
+	{
+		vars.kitebrosControl = 1;
+		return LogAndSplit("kitebrosControl");
+	}
+
 	if (current.map != old.map)
 	{
 		vars.Log("Current Map Changed: " + current.map);
@@ -600,49 +650,6 @@ split
 			vars.nest2 = 1;
 			return LogAndSplit("nest2");
 		}
-	}
-	
-	//End split
-	if (vars.reachedEnd == 1 && current.map == 0 && current.weapon1 != old.weapon1)
-	{
-		vars.end = 1;
-		return LogAndSplit("end");
-	}
-	
-	if (current.map == 200 && current.cutscene > old.cutscene && vars.finishedPowerSubstation == 0)
-	{
-		vars.finishedPowerSubstation = 1;
-		return LogAndSplit("finishedPowerSubstation");
-	}
-		
-	if (current.map == 204 && current.cutscene > old.cutscene && vars.kitebrosControl == 0)
-	{
-		vars.kitebrosControl = 1;
-		return LogAndSplit("kitebrosControl");
-	}
-	
-	if (current.map == 242 && current.bossHP < 1 && vars.clockNemmy == 0)
-	{
-		vars.clockNemmy = 1;
-		return LogAndSplit("clockNemmy");
-	}
-	
-	if (current.map == 231 && current.bossHP < 1 && vars.flameNemmy == 0)
-	{
-		vars.flameNemmy = 1;
-		return LogAndSplit("flameNemmy");
-	}
-	
-	if (current.map == 316 && !(current.bossHP >= 1) && vars.disposalNemmy == 0)
-	{
-		vars.disposalNemmy = 1;
-		return LogAndSplit("disposalNemmy");
-	}
-	
-	if (current.map == 319 && current.bossHP < 5000  && vars.finalNemmy == 0)
-	{
-		vars.finalNemmy = 1;
-		return LogAndSplit("finalNemmy");
 	}
 }
 
